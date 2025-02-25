@@ -1,8 +1,9 @@
 <?php
 require 'connection.php';
 
-// Haal de biertjes op uit de database
-$stmt = $conn->prepare("SELECT id, name, likes, dislikes FROM beers");
+// Haal de biertjes op uit de database, gesorteerd op aantal likes (hoog naar laag)
+$sql = "SELECT id, name, likes, dislikes FROM beers ORDER BY likes DESC";
+$stmt = $conn->prepare($sql);
 $stmt->execute();
 $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -13,47 +14,16 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biertjes</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <h1>Onze Biertjes</h1>
-
-    <?php if (!empty($biertjes)): ?>
-        <ul>
-    <?php foreach ($biertjes as $bier): ?>
-        <li>
-            <?= htmlspecialchars($bier['name']) ?>
-            <div class="like-dislike-container">
-                <button class="like-btn" data-id="<?= $bier['id'] ?>">👍 (<span id="likes-<?= $bier['id'] ?>"><?= $bier['likes'] ?></span>)</button>
-                <button class="dislike-btn" data-id="<?= $bier['id'] ?>">👎 (<span id="dislikes-<?= $bier['id'] ?>"><?= $bier['dislikes'] ?></span>)</button>
-            </div>
-        </li>
-    <?php endforeach; ?>
-</ul>
-
-    <?php else: ?>
-        <p>Geen biertjes gevonden.</p>
-    <?php endif; ?>
-
-    <script>
-        $(document).ready(function () {
-            $(".like-btn").click(function () {
-                var beerId = $(this).data("id");
-                $.post("vote.php", { id: beerId, type: "like" }, function (data) {
-                    $("#likes-" + beerId).text(data.likes);
-                }, "json");
-            });
-
-            $(".dislike-btn").click(function () {
-                var beerId = $(this).data("id");
-                $.post("vote.php", { id: beerId, type: "dislike" }, function (data) {
-                    $("#dislikes-" + beerId).text(data.dislikes);
-                }, "json");
-            });
-        });
-    </script>
-
-</body>
+        <table>
+            <?php foreach ($biertjes as $bier){
+            
+             }
+            ?>
+        </table>
+    </body>
 </html>
