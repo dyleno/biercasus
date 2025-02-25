@@ -10,17 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['type'])
     } elseif ($type === 'dislike') {
         $stmt = $conn->prepare("UPDATE beers SET dislikes = dislikes + 1 WHERE id = ?");
     } else {
+        echo json_encode(["error" => "Ongeldig type"]);
         exit;
     }
 
-    $stmt->execute([$id]);
+    if ($stmt->execute([$id])) {
+        // Haal de bijgewerkte like en dislike tellingen op
+        $stmt = $conn->prepare("SELECT likes, dislikes FROM beers WHERE id = ?");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Nieuwe waarden ophalen
-    $stmt = $conn->prepare("SELECT likes, dislikes FROM beers WHERE id = ?");
-    $stmt->execute([$id]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // JSON-response terugsturen
-    echo json_encode($result);
+        echo json_encode($result);
+    } else {
+        echo json_encode(["error" => "Databasefout"]);
+    }
 }
 ?>
