@@ -45,9 +45,72 @@ button {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    border: none;
-    margin: 2px;
-    transition: 0.3s;
+    border: none;body {
+        font-family: Arial, sans-serif;
+        background-image: url("noh.jpg");
+        background-color: rgb(58, 135, 202);
+        text-align: center;
+        padding: 20px;
+    }
+    
+    h1 {
+        color: #333;
+    }
+    
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-image: url("noh.jpg");
+        border: 2px solid #333; /* Dikkere rand om de hele tabel */
+        border-radius: 10px;
+        overflow: hidden; /* Zorgt ervoor dat de border-radius ook effect heeft */
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); /* Schaduw voor mooi effect */
+    }
+    
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd; /* Dunne lijntjes tussen cellen */
+        text-align: center;
+    }
+    
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    tr:hover {
+        background-color: #ddd;
+    }
+    
+    button {
+        padding: 8px 12px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        margin: 2px;
+        transition: 0.3s;
+    }
+    
+    button:hover {
+        opacity: 0.8;
+    }
+    
+    button:first-child {
+        background-color: green;
+        color: white;
+    }
+    
+    button:last-child {
+        background-color: red;
+        color: white;
+    }
 }
 
 button:hover {
@@ -55,11 +118,12 @@ button:hover {
 }
 
 button:first-child {
-    background-color: green;
+    background-color: rgb(98, 168, 0);
     color: white;
 }
 
 button:last-child {
-    background-color: red;
+    background-color: rgb(255, 0, 0);
     color: white;
 }
+ 

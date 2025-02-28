@@ -1,8 +1,8 @@
 <?php
 require 'connection.php';
 
-// Haal de biertjes op, gesorteerd op likes (hoog naar laag)
-$sql = "SELECT id, name, brewer, likes, dislikes FROM beers ORDER BY likes DESC";
+// Haal de biertjes op uit de database
+$sql = "SELECT * FROM beers";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biertjes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style9.css">
     <script>
         function vote(beerId, type) {
             let formData = new FormData();
@@ -32,6 +32,7 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     document.getElementById("dislikes-" + beerId).innerText = data.dislikes;
                 } else {
                     console.error("Fout bij stemmen:", data.error);
+                    alert(data.error);
                 }
             })
             .catch(error => console.error("Fout bij het verwerken van de aanvraag:", error));
@@ -46,7 +47,6 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <th>Naam</th>
         <th>Brouwer</th>
         <th>Likes</th>
-        <th>Dislikes</th>
         <th>Acties</th>
     </tr>
     <?php foreach ($biertjes as $bier): ?>
@@ -54,7 +54,6 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td><?= htmlspecialchars($bier["name"]) ?></td>
             <td><?= htmlspecialchars($bier["brewer"]) ?></td>
             <td><span id="likes-<?= $bier['id'] ?>"><?= $bier["likes"] ?></span></td>
-            <td><span id="dislikes-<?= $bier['id'] ?>"><?= $bier["dislikes"] ?></span></td>
             <td>
                 <button onclick="vote(<?= $bier['id'] ?>, 'like')">👍</button>
                 <button onclick="vote(<?= $bier['id'] ?>, 'dislike')">👎</button>
