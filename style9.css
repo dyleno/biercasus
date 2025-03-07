@@ -61,7 +61,7 @@ button {
         width: 80%;
         margin: 20px auto;
         border-collapse: collapse;
-        background-image: url("noh.jpg");
+        background-image: url("noh.jpg"); 
         border: 2px solid #333; /* Dikkere rand om de hele tabel */
         border-radius: 10px;
         overflow: hidden; /* Zorgt ervoor dat de border-radius ook effect heeft */
