@@ -22,7 +22,7 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biertjes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style9.css">
 </head>
 <body>
 
@@ -40,7 +40,7 @@ $biertjes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <th>Brouwer</th>
         <th>Gemiddelde Rating</th>
         <th>Jouw Rating</th>
-        <th>Notitie</th>
+        
     </tr>
     <?php foreach ($biertjes as $bier): ?>
         <tr>
