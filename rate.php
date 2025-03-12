@@ -33,5 +33,4 @@ if ($existing_rating) {
 // Redirect terug naar index.php
 header("Location: index.php");
 exit;
-?>
 

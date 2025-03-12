@@ -16,13 +16,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: index.php");
         exit;
     } else {
-        echo "Ongeldige inloggegevens!";
+        $error = "Ongeldige inloggegevens!";
     }
 }
 ?>
 
-<form method="POST">
-    <input type="email" name="email" placeholder="E-mail" required>
-    <input type="password" name="password" placeholder="Wachtwoord" required>
-    <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="loginstyle.css">
+</head>
+<body>
+
+<div class="container login-container">
+    <h1>Login</h1>
+    
+    <?php if (isset($error)) : ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
+    
+    <form method="POST">
+        <input type="email" name="email" placeholder="E-mail" required>
+        <input type="password" name="password" placeholder="Wachtwoord" required>
+        <button type="submit">Inloggen</button>
+    </form>
+    
+    <p>Nog geen account? <a href="register.php">Registreer hier</a></p>
+</div>
+
+</body>
+</html>
