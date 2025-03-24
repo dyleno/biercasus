@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container login-container">
-    <h1>Login</h1>
+    
     
     <?php if (isset($error)) : ?>
         <p class="error"><?= htmlspecialchars($error) ?></p>
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Inloggen</button>
     </form>
     
-    <p>Nog geen account? <a href="register.php">Registreer hier</a></p>
+    <p>Nog geen account? <a href="registreren.php">Registreer hier</a></p>
 </div>
 
 </body>
